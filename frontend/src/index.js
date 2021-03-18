@@ -4,6 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faCaretUp, faCaretDown)
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

@@ -1,36 +1,58 @@
 import logo from './logo.svg';
 import './App.sass';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function App() {
 	return (
-		<div className="App">
+		<div className="App container">
 			<h1 className="title">Dashboard</h1>
-			<p className="subtitle">
-				Modern CSS framework based on{' '}
-				<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox">
-					Flexbox
-				</a>
-			</p>
 
-			<div className="field">
-				<div className="control">
-					<input className="input" type="text" placeholder="Input" />
+			<div className="box columns">
+				<div>
+						<span className="icon">
+							<span className="fa-stack">
+								<i className="fa-stack fa-2x"><FontAwesomeIcon icon="caret-up" /></i>
+								<i className="fa-stack fa-2x"><FontAwesomeIcon icon="caret-down" /></i>
+							</span>
+						</span>
 				</div>
+				<article className="media">
+					<div className="media-left">
+						<figure className="image is-64x64">
+							<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
+						</figure>
+					</div>
+					<div className="media-content">
+						<div className="content">
+							<p>
+								<strong>Floolproof Pan Pizza</strong>
+							</p>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+							</p>
+						</div>
+					</div>
+				</article>
 			</div>
 
-			<div className="field">
-				<p className="control">
-					<span className="select">
-						<select>
-							<option>Select dropdown</option>
-						</select>
-					</span>
-				</p>
-			</div>
-
-			<div className="buttons">
-				<a className="button is-primary">Primary</a>
-				<a className="button is-link">Link</a>
+			<div className="box">
+				<article className="media">
+					<div className="media-left">
+						<figure className="image is-64x64">
+							<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
+						</figure>
+					</div>
+					<div className="media-content">
+						<div className="content">
+							<p>
+								<strong>Floolproof Pan Pizza</strong>
+							</p>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+							</p>
+						</div>
+					</div>
+				</article>
 			</div>
 		</div>
 	);
