@@ -175,7 +175,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/backend/dev/1615948094703-2021-03-17T02:28:14.703Z/backend.zip"
+                "S3Key": "serverless/backend/dev/1616633034485-2021-03-25T00:43:54.485Z/backend.zip"
               },
               "Handler": "handler.whoami",
               "Runtime": "ruby2.7",
@@ -273,7 +273,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1615948093675": {
+          "ApiGatewayDeployment1616633032931": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -485,7 +485,7 @@
     "artifact": "/Users/enestorovic/Sites/recipebook/backend/.serverless/backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/backend/dev/1615948094703-2021-03-17T02:28:14.703Z",
+    "artifactDirectoryName": "serverless/backend/dev/1616633034485-2021-03-25T00:43:54.485Z",
     "artifact": "backend.zip"
   }
 }
