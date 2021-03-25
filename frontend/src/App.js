@@ -11,7 +11,7 @@ function App() {
 				<div>
 						<span className="icon">
 							<span className="fa-stack">
-								<i className="fa-stack fa-2x"><FontAwesomeIcon icon="caret-up" /></i>
+								<i className="fa-stack fa-2x	"><FontAwesomeIcon icon="caret-up" /></i>
 								<i className="fa-stack fa-2x"><FontAwesomeIcon icon="caret-down" /></i>
 							</span>
 						</span>
