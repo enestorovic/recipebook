@@ -7,10 +7,19 @@ provider:
   runtime: ruby2.7
   lambdaHashingVersion: 20201221
 
+plugins:
+  - serverless-offline
+
 functions:
   whoami:
     handler: handler.whoami
     events:
       - http:
           path: ping
+          method: get
+  recipes:
+    handler: handler.recipes
+    events:
+      - http:
+          path: recipes
           method: get
