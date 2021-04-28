@@ -13,12 +13,7 @@ const config = {
 	appId: "1:682961276413:web:d694bc438866e5e41edd94"
 };
 
-const isLocalEnvironment = window.location.href.includes('localhost')
-if(isLocalEnvironment) {
-	const backendUrl = "http://localhost:4000";
-} else {
-	const backendUrl = "https://mq287hzg9l.execute-api.us-east-1.amazonaws.com";
-}
+
 
 firebase.initializeApp(config);
 
@@ -33,6 +28,12 @@ class SignedInComponent extends React.Component {
 
 	async componentDidMount() {
 		const token = await firebase.auth().currentUser?.getIdToken();
+
+		let isLocalEnvironment = window.location.href.includes('localhost');
+		let backendUrl = "https://mq287hzg9l.execute-api.us-east-1.amazonaws.com";
+		if(isLocalEnvironment) {
+			backendUrl = "http://localhost:4000";
+		}
 
 		try {
 			const response = await fetch(backendUrl + "/dev/recipes", {
