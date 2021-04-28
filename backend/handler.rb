@@ -8,8 +8,7 @@ end
 
 def recipes(event:, context:)
 	response = nil
-
-
+	
 	puts "EVENT: "
 	puts event["headers"]
 
@@ -36,7 +35,7 @@ def recipes(event:, context:)
 			response = {statusCode: 401}
 		end
 	end
-	
+
 	response
 	
 end

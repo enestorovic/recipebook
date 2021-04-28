@@ -1,5 +1,7 @@
 {
   "devDependencies": {
-    "serverless-offline": "^6.9.0"
+    "serverless-offline": "^6.9.0",
+    "serverless-ruby-layer": "^1.4.0",
+    "serverless-ruby-package": "^1.4.0"
   }
 }

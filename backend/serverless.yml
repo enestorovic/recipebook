@@ -9,7 +9,7 @@ provider:
 
 plugins:
   - serverless-offline
-
+  - serverless-ruby-layer
 functions:
   whoami:
     handler: handler.whoami
@@ -17,9 +17,11 @@ functions:
       - http:
           path: ping
           method: get
+          cors: true
   recipes:
     handler: handler.recipes
     events:
       - http:
           path: recipes
           method: get
+          cors: true
