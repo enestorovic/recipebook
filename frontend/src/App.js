@@ -1,8 +1,8 @@
 import './App.sass';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react';
-import firebase from 'firebase';
+import React, { useEffect, useState } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import firebase from 'firebase';
 
 const config = {
 	apiKey: "AIzaSyDbXZCw-a5eWxEm1RbJIg45vc45ALbzUVg",
@@ -24,81 +24,92 @@ const uiConfig = {
 	// We will display Google and Facebook as auth providers.
 	signInOptions: [
 		firebase.auth.EmailAuthProvider.PROVIDER_ID
-	]
+	],
+	callbacks: {
+    // Avoid redirects after sign-in.
+    signInSuccessWithAuthResult: () => false,
+  }
 };
 
-var state = {
-	isSignedIn: false
-};
+function SignInScreen() {
+	const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
 
-function App() {
+	// Listen to the Firebase Auth state and set the local state.
+	useEffect(() => {
+		const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
+			setIsSignedIn(!!user);
+		});
+		return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
+	}, []);
+
+	if (!isSignedIn) {
+		return (
+			<div className="App container">
+				<h1>My App</h1>
+				<p>Please sign-in:</p>
+				<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+			</div>
+		);
+	}
 	return (
 		<div className="App container">
-			{state.isSignedIn !== undefined && !state.isSignedIn &&
-				<div>
-					<h1>My App</h1>
-					<p>Please sign-in:</p>
-					<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()}/>
-				</div>
-			}
-			{state.isSignedIn &&
-				<div>
-					<h1 className="title">Dashboard {state.isSignedIn}</h1>
+			<h1>My App</h1>
+			<p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+			<a onClick={() => firebase.auth().signOut()}>Sign-out</a>
 
-					<div className="box columns">
-						<div>
-								<span className="icon">
-									<span className="fa-stack">
-										<i className="fa-stack fa-2x	"><FontAwesomeIcon icon="caret-up" /></i>
-										<i className="fa-stack fa-2x"><FontAwesomeIcon icon="caret-down" /></i>
-									</span>
+			<div>
+				<h1 className="title">Dashboard</h1>
+
+				<div className="box columns">
+					<div>
+							<span className="icon">
+								<span className="fa-stack">
+									<i className="fa-stack fa-2x	"><FontAwesomeIcon icon="caret-up" /></i>
+									<i className="fa-stack fa-2x"><FontAwesomeIcon icon="caret-down" /></i>
 								</span>
+							</span>
+					</div>
+					<article className="media">
+						<div className="media-left">
+							<figure className="image is-64x64">
+								<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
+							</figure>
 						</div>
-						<article className="media">
-							<div className="media-left">
-								<figure className="image is-64x64">
-									<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
-								</figure>
+						<div className="media-content">
+							<div className="content">
+								<p>
+									<strong>Floolproof Pan Pizza</strong>
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+								</p>
 							</div>
-							<div className="media-content">
-								<div className="content">
-									<p>
-										<strong>Floolproof Pan Pizza</strong>
-									</p>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-									</p>
-								</div>
-							</div>
-						</article>
-					</div>
-
-					<div className="box">
-						<article className="media">
-							<div className="media-left">
-								<figure className="image is-64x64">
-									<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
-								</figure>
-							</div>
-							<div className="media-content">
-								<div className="content">
-									<p>
-										<strong>Floolproof Pan Pizza</strong>
-									</p>
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-									</p>
-								</div>
-							</div>
-						</article>
-					</div>
+						</div>
+					</article>
 				</div>
-			}
-			
 
-			
+				<div className="box">
+					<article className="media">
+						<div className="media-left">
+							<figure className="image is-64x64">
+								<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
+							</figure>
+						</div>
+						<div className="media-content">
+							<div className="content">
+								<p>
+									<strong>Floolproof Pan Pizza</strong>
+								</p>
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+								</p>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
 		</div>
 	);
 }
 
-export default App;
+export default SignInScreen
