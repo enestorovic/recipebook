@@ -42,73 +42,74 @@ function SignInScreen() {
 		return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
 	}, []);
 
-	if (!isSignedIn) {
-		return (
-			<div className="App container">
-				<h1>My App</h1>
-				<p>Please sign-in:</p>
-				<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-			</div>
-		);
-	}
+	// if (!isSignedIn) {
+	// 	return (
+	// 		<div className="App container">
+	// 			<h1>My App</h1>
+	// 			<p>Please sign-in:</p>
+	// 			<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+	// 		</div>
+	// 	);
+	// }
 	return (
-		<div className="App container">
-			<h1>My App</h1>
-			<p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-			<a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+		<div>test</div>
+		// <div className="App container">
+		// 	<h1>My App</h1>
+		// 	<p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+		// 	<a onClick={() => firebase.auth().signOut()}>Sign-out</a>
 
-			<div>
-				<h1 className="title">Dashboard</h1>
+		// 	<div>
+		// 		<h1 className="title">Dashboard</h1>
 
-				<div className="box columns">
-					<div>
-							<span className="icon">
-								<span className="fa-stack">
-									<i className="fa-stack fa-2x	"><FontAwesomeIcon icon="caret-up" /></i>
-									<i className="fa-stack fa-2x"><FontAwesomeIcon icon="caret-down" /></i>
-								</span>
-							</span>
-					</div>
-					<article className="media">
-						<div className="media-left">
-							<figure className="image is-64x64">
-								<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
-							</figure>
-						</div>
-						<div className="media-content">
-							<div className="content">
-								<p>
-									<strong>Floolproof Pan Pizza</strong>
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-								</p>
-							</div>
-						</div>
-					</article>
-				</div>
+		// 		<div className="box columns">
+		// 			<div>
+		// 					<span className="icon">
+		// 						<span className="fa-stack">
+		// 							<i className="fa-stack fa-2x	"><FontAwesomeIcon icon="caret-up" /></i>
+		// 							<i className="fa-stack fa-2x"><FontAwesomeIcon icon="caret-down" /></i>
+		// 						</span>
+		// 					</span>
+		// 			</div>
+		// 			<article className="media">
+		// 				<div className="media-left">
+		// 					<figure className="image is-64x64">
+		// 						<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
+		// 					</figure>
+		// 				</div>
+		// 				<div className="media-content">
+		// 					<div className="content">
+		// 						<p>
+		// 							<strong>Floolproof Pan Pizza</strong>
+		// 						</p>
+		// 						<p>
+		// 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+		// 						</p>
+		// 					</div>
+		// 				</div>
+		// 			</article>
+		// 		</div>
 
-				<div className="box">
-					<article className="media">
-						<div className="media-left">
-							<figure className="image is-64x64">
-								<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
-							</figure>
-						</div>
-						<div className="media-content">
-							<div className="content">
-								<p>
-									<strong>Floolproof Pan Pizza</strong>
-								</p>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
-								</p>
-							</div>
-						</div>
-					</article>
-				</div>
-			</div>
-		</div>
+		// 		<div className="box">
+		// 			<article className="media">
+		// 				<div className="media-left">
+		// 					<figure className="image is-64x64">
+		// 						<img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"></img>
+		// 					</figure>
+		// 				</div>
+		// 				<div className="media-content">
+		// 					<div className="content">
+		// 						<p>
+		// 							<strong>Floolproof Pan Pizza</strong>
+		// 						</p>
+		// 						<p>
+		// 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+		// 						</p>
+		// 					</div>
+		// 				</div>
+		// 			</article>
+		// 		</div>
+		// 	</div>
+		// </div>
 	);
 }
 
