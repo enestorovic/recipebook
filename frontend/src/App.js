@@ -35,7 +35,7 @@ class SignedInComponent extends React.Component {
 		const token = await firebase.auth().currentUser?.getIdToken();
 
 		try {
-			const response = await fetch("http://localhost:4000/dev/recipes", {
+			const response = await fetch(backendUrl + "/dev/recipes", {
 				headers: {
 					Authorization: token,
 				},
