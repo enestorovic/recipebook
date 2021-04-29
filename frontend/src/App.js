@@ -13,8 +13,6 @@ const config = {
 	appId: "1:682961276413:web:d694bc438866e5e41edd94"
 };
 
-
-
 firebase.initializeApp(config);
 
 class SignedInComponent extends React.Component {
@@ -23,10 +21,12 @@ class SignedInComponent extends React.Component {
 
 		this.state = {
 			recipes: null,
+			newRecipeTitle: null,
+			newRecipeDescription: null
 		};
 	}
 
-	async componentDidMount() {
+	async fetchRecipes() {
 		const token = await firebase.auth().currentUser?.getIdToken();
 
 		let isLocalEnvironment = window.location.href.includes('localhost');
@@ -52,8 +52,43 @@ class SignedInComponent extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+		this.fetchRecipes()
+	}
+
+	async createNewRecipe() {
+		const token = await firebase.auth().currentUser?.getIdToken()
+
+		let isLocalEnvironment = window.location.href.includes('localhost');
+		let backendUrl = "https://mq287hzg9l.execute-api.us-east-1.amazonaws.com";
+		if(isLocalEnvironment) {
+			backendUrl = "http://localhost:4000";
+		}
+
+		const response = await fetch(backendUrl + "/dev/recipes", {
+			method: 'POST',
+			headers: {
+				Authorization: token,
+			},
+			body: JSON.stringify({
+				title: this.state.newRecipeTitle,
+				description: this.state.newRecipeDescription
+			})
+		})
+
+		this.fetchRecipes()
+	}
+
 	signOut() {
 		firebase.auth().signOut();
+	}
+
+	onNewRecipeTitleUpdated(event) {
+		this.setState({newRecipeTitle: event.target.value})
+	}
+
+	onNewRecipeDescriptionUpdated(event) {
+		this.setState({newRecipeDescription: event.target.value})
 	}
 
 	render() {
@@ -96,6 +131,12 @@ class SignedInComponent extends React.Component {
 								);
 							})
 						}
+					<div>
+						<div class="title">Create a New Recipe</div>
+						<input type="text" onChange={(event) => this.onNewRecipeTitleUpdated(event)}></input>
+						<input type="text" onChange={(event) => this.onNewRecipeDescriptionUpdated(event)}></input>
+						<button onClick={() => this.createNewRecipe()}>Add Recipe</button>
+					</div>
 					<button onClick={() => this.signOut()}>Sign out</button>
 				</div>
 			</section>

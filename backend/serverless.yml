@@ -25,3 +25,10 @@ functions:
           path: recipes
           method: get
           cors: true
+  createRecipe:
+    handler: handler.new_recipe
+    events:
+      - http:
+          path: recipes
+          method: post
+          cors: true
